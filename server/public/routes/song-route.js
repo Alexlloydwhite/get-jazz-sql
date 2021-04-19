@@ -23,7 +23,7 @@ pool.on('error', error => {
 });
 
 router.get('/', (req, res) => {
-    let queryText = 'SELECT * FROM artists;';
+    let queryText = 'SELECT * FROM songs;';
     pool.query(queryText)
         .then(dbResults => {
             res.send(dbResults.rows);

@@ -10,27 +10,30 @@ app.listen(PORT, () => {
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('server/public'));
 
-let musicRouter = require('./public/routes/artist-route');
-app.use('/artists', musicRouter);
+let artistRouter = require('./public/routes/artist-route');
+app.use('/artists', artistRouter);
 
-app.get('/artist', (req, res) => {
-    console.log(`In /songs GET`);
-    res.send(artistList);
-});
+let songRouter = require('./public/routes/song-route');
+app.use('/songs', songRouter);
 
-app.post('/artist', (req, res) => {
-    artistList.push(req.body);
-    res.sendStatus(201);
-});
+// app.get('/artist', (req, res) => {
+//     console.log(`In /songs GET`);
+//     res.send(artistList);
+// });
 
-app.get('/song', (req, res) => {
-    console.log(`In /songs GET`);
-    res.send(songList);
-});
+// app.post('/artist', (req, res) => {
+//     artistList.push(req.body);
+//     res.sendStatus(201);
+// });
 
-app.post('/song', (req, res) => {
-    songList.push(req.body);
-    res.sendStatus(201);
-});
+// app.get('/song', (req, res) => {
+//     console.log(`In /songs GET`);
+//     res.send(songList);
+// });
+
+// app.post('/song', (req, res) => {
+//     songList.push(req.body);
+//     res.sendStatus(201);
+// });
 
 

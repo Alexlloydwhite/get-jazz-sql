@@ -66,7 +66,7 @@ function getArtists() {
     // get artist data from the server
     $.ajax({
         method: 'GET',
-        url: '/artist'
+        url: '/artists'
     }).then(function(response) {
         const listOfArtists = response;
         renderArtists(response);
@@ -79,7 +79,7 @@ function getSongs() {
     // get song data from the server
     $.ajax({
         method: 'GET',
-        url: '/song'
+        url: '/songs'
     }).then(function (response) {
         renderSongs(response);
     }).catch(function (error) {
@@ -95,8 +95,8 @@ function renderArtists( listOfArtists ) {
     for(let artist of listOfArtists) {
         $('#artistTableBody').append(`
                 <tr>
-                    <td>${artist.name}</td>
-                    <td>${artist.birthdate}</td>
+                    <td>${artist.artist_name}</td>
+                    <td>${artist.year_born}</td>
                 </tr>`
         );
     }
