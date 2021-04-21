@@ -51,7 +51,7 @@ function addSong() {
     // Send the new artist to the server as data
     $.ajax({
         method: 'POST',
-        url: '/song',
+        url: '/songs',
         data: newSong
     }).then(function(response) {
         console.log(response);
