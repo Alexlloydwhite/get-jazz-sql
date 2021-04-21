@@ -17,22 +17,22 @@ function onReady() {
 
 function addArtist() {
     // Get info to send to the server
-    const artistToSend = {
+    let payloadObject = {
         name: $('#artist-name').val(), 
         birthdate: $('#artist-born').val()
-    };
-
-    console.log('Adding artist', artistToSend);
-
+    }
+    console.log('Adding artist', payloadObject);
     // Send the new artist to the server as data
     $.ajax({
         method: 'POST',
-        url: '/artist',
-        data: artistToSend
+        url: '/artists',
+        data: payloadObject
     }).then(function(response) {
         console.log(response);
         getArtists();
-    }).catch(function(error) {
+        $('#artist-name').val('');
+        $('#artist-born').val('');
+;    }).catch(function(error) {
         console.log('error in artist post', error); 
         alert('Error adding artist. Please try again later.')       
     });

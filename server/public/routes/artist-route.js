@@ -34,4 +34,26 @@ router.get('/', (req, res) => {
         })
 });
 
+router.post('/', (req, res) => {
+    const newArtist = {
+        name: req.body.name,
+        birthdate: req.body.birthdate,
+    };
+    console.log('new artist is:', newArtist);
+    
+    const queryText = `INSERT INTO "artists" ("artist_name", "year_born")
+                            VALUES ($1, $2)
+                            RETURNING "id";`;
+    pool.query( queryText, [req.body.name, req.body.birthdate] )
+        .then(result => {
+            console.log('The new artist is:', result);
+            res.sendStatus(201);
+        })
+        .catch(error => {
+            console.log(`This didn't work. ${queryText}`, error);
+            res.sendStatus(500);
+        })
+
+})
+
 module.exports = router;
